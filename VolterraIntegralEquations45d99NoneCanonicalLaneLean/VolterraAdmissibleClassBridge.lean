@@ -1,0 +1,26 @@
+import canonicalLaneMathlib.AdmissibleClass
+import HautevilleHouse.VolterraIntegralEquations45d99NoneCanonicalLaneLean.VolterraKernelSpace
+import HautevilleHouse.VolterraIntegralEquations45d99NoneCanonicalLaneLean.VolterraIntegralOperator
+import HautevilleHouse.VolterraIntegralEquations45d99NoneCanonicalLaneLean.VolterraExistenceUniqueness
+import HautevilleHouse.VolterraIntegralEquations45d99NoneCanonicalLaneLean.VolterraAsymptoticStability
+import HautevilleHouse.VolterraIntegralEquations45d99NoneCanonicalLaneLean.VolterraNumericalApproximation
+
+namespace HautevilleHouse
+namespace VolterraIntegralEquations45d99NoneCanonicalLaneLean
+
+structure VolterraAdmissibleObject where
+  kernelPackage : VolterraKernelPackage
+  operatorPackage : VolterraIntegralOperatorPackage kernelPackage
+  existencePackage : ExistenceUniquenessPackage operatorPackage
+  stabilityPackage : AsymptoticStabilityPackage existencePackage
+  numericalPackage : NumericalApproximationPackage stabilityPackage
+
+def volterraAdmittedClosure (A : VolterraAdmissibleObject) : Prop :=
+  VolterraKernelClosed A.kernelPackage ∧
+  VolterraIntegralOperatorClosed A.operatorPackage ∧
+  ExistenceUniquenessClosed A.existencePackage ∧
+  AsymptoticStabilityClosed A.stabilityPackage ∧
+  NumericalApproximationClosed A.numericalPackage
+
+end VolterraIntegralEquations45d99NoneCanonicalLaneLean
+end HautevilleHouse
